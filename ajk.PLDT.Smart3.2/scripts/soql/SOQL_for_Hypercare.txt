@@ -1,0 +1,28 @@
+select id, Delivery_Status__c, status, Reservation_Sales_Number__c, S4_Sales_Order_Number__c,  
+airWayBillId__c, Credit_Condition__c,  CSP_Status__c, Pairing_Status__c, CSP_Error_Message__c, 
+CreatedDate,CreatedBy.Name from order where isMasterOrder__c = true 
+
+
+select id, Delivery_Status__c, status, Reservation_Sales_Number__c, S4_Sales_Order_Number__c,  
+airWayBillId__c, Credit_Condition__c,  CSP_Status__c, Pairing_Status__c, CSP_Error_Message__c, 
+CreatedDate,CreatedBy.Name from order where isMasterOrder__c = true and CreatedDate > 2021-06-17T06:42:28.000Z
+
+
+select   id, MasterOrder__c,
+MasterOrder__r.Delivery_Status__c, 
+MasterOrder__r.status, 
+status, 
+MasterOrder__r.Reservation_Sales_Number__c, MasterOrder__r.S4_Sales_Order_Number__c,  
+MasterOrder__r.airWayBillId__c, MasterOrder__r.Credit_Condition__c,  
+MasterOrder__r.CSP_Status__c, 
+MasterOrder__r.Pairing_Status__c, 
+CSP_Error_Message__c, 
+Order.CreatedDate,LastModifiedDate,CreatedBy.Name
+from order 
+where MasterOrder__r.id in ()
+
+select id, orderid, MIN__c, IMSI__c, order.status, order.uSPS_Flag__c,order.uSPS_Request_Id__c, 
+order.usps_error_message__c, order.Kenan_Flag__c, order.Kenan_Error_Message__c, 
+order.Interaction_Log_Number__c,order.Order_Type__c,CreatedDate,LastModifiedDate  from orderitem where order.status not in ('Activated','Delivered', 'Cancelled') 
+and order.isMasterOrder__c = false and order.MasterOrder__r.S4_Sales_Order_Number__c not in ('null', 'Failed','') 
+and order.MasterOrder__r.CSP_Status__c = 'UpdateSOCompleted' and order.uSPS_Flag__c <> null and Root_Product__c = 'Y' 
