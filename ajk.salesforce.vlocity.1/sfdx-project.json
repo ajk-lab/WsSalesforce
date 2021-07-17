@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "ajk.salesforce.vlocity.1",
+  "namespace": "",
+  "sfdcLoginUrl": "https://industry-sales-39201.my.salesforce.com",
+  "sourceApiVersion": "52.0"
+}
